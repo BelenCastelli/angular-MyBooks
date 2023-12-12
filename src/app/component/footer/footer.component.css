@@ -1,0 +1,42 @@
+#footer{
+    width: 100%;
+    height: 70px;
+    position: absolute;
+    bottom: 0;
+
+    display: flex;
+
+    background-image:var(--backgroundFooter);
+    color: var(--colorText);
+    font-family: var(--fontTitle);
+}
+
+#copy{
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#redes{
+    width: 40%;
+    display: flex;
+}
+
+#redes-lista{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    list-style: none;
+}
+
+.link{
+    text-decoration: none;
+    color: inherit;
+}
+
+.link:hover{
+    color: var(--colorLinkHover);
+}
