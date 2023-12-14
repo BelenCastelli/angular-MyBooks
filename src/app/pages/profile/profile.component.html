@@ -2,24 +2,24 @@
     <section class="seccion" id="perfil">
         <div class="s-content">
             <div id="img-content">
-                <img id="img" src= {{foto}} >
+                <img id="img" src= {{user.photo}} >
             </div>
             <div class="datos datos-t">
-                <h2>{{nombre}} {{apellido}}</h2>
+                <h2>{{user.nombreCompleto()}}</h2>
             </div>
             <div class="datos">
                 <label class="label" for="nombre">Nombre</label>
-                <input disabled ="text" id="nombre" value={{nombre}}>
+                <input disabled ="text" id="nombre" value={{user.name}}>
             </div>
 
             <div class="datos">
                 <label class="label" for="apellido">Apellidos</label>
-                <input disabled ="text" id="apellido" value={{apellido}}>
+                <input disabled ="text" id="apellido" value={{user.last_name}}>
             </div>
 
             <div class="datos">
                 <label class="label" for="email">Correo</label>
-                <input disabled ="email" id="email" value="{{correo}}">
+                <input disabled ="email" id="email" value={{user.email}}>
             </div>
         </div>
     </section>
@@ -33,25 +33,29 @@
             <div>
                 <form>
                     <div class="datos">
-                        <label  for=""></label>
-                        <input type="text" placeholder="Nombre">
+                        <label  for="name"></label>
+                        <input type="text" id="name" #name placeholder="Nombre">
                     </div>
         
                     <div class="datos">
-                        <label  for=""></label>
-                        <input type="text" placeholder="Apellido">
+                        <label  for="lastName"></label>
+                        <input type="text" id="lastName" #lastName placeholder="Apellido">
                     </div>
         
                     <div class="datos">
-                        <label  for=""></label>
-                        <input type="email" name="" id="" placeholder="Correo">
+                        <label  for="email"></label>
+                        <input type="email" id=email #email placeholder="Correo">
                     </div>
                     <div class="datos">
-                        <label  for=""></label>
-                        <input type="url" placeholder="Foto Perfil">
+                        <label  for="photo"></label>
+                        <input type="url" id="photo" #photo placeholder="URL">
                     </div>
                     <div id="button-div">
-                        <button type="button" id="button-modificar">Modificar</button>
+                        <button (click) = modificarDatos(name.value,lastName.value,email.value,photo.value) type="button" id="button-modificar">Modificar</button>
+                    </div>
+                    <div id="cambios">
+                        <p class = {{color}} [hidden] = "isHidden">Usario Actualizado</p>
+                        <p class = {{color}} [hidden] = "isHidden2">No se han detectado cambios</p>
                     </div>
                 </form>
             </div>

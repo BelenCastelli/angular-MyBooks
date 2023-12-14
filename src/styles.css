@@ -12,6 +12,7 @@
     --backgroundFooter: linear-gradient(to top, #3d2d15, #473218, #51381a, #5c3d1d, #674221);
     --backgroundHeader: linear-gradient(to bottom, #3d2d15, #473218, #51381a, #5c3d1d, #674221);
     --backgroundText:  rgba(245, 245, 220, 0.38); 
+    --background: rgba(245, 245, 220, 0.842); 
     --colorLinkHover:#b0793e;
    
 }
