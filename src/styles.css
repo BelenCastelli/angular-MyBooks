@@ -17,7 +17,7 @@
    
 }
 
-body{
+main{
     background-image: url(assets/img-home/fondo.jpg);
     background-size:auto;
     font-family: var(--fontTitle);

@@ -1,0 +1,74 @@
+<main>
+    <div id="encabezado">
+        <h2>Descubre mundos inexplorados, despierta tu imaginación y sumérgete en emocionantes historias.</h2>
+        <h3>Encuentra tu próximo viaje literario hoy mismo</h3>
+    </div>
+
+    <section id="content-libros">
+        <div id="libros" *ngIf="books.length > 0; else noLibros">
+            
+            <div *ngFor="let book of books; let odd = odd" class="card">
+                <h3>{{book.title}}</h3>
+                <div>
+                    <img class="portada" src="{{book.photo}}" alt="Portada libro">
+                </div>
+            
+                <h4 class="autor">{{book.author}}</h4>
+                <p class="precio"> Precio: {{book.price}}&euro;</p>
+                <p class="ref">{{book.id_book | ref}} </p>
+                <button type="button" class="botonComprar" [ngClass]="{'par': !odd, 'impar': odd}">Comprar</button>
+            </div>
+        </div>
+        <ng-template #noLibros>
+            <div id="noLibros">
+            No existen libros
+            </div>
+        </ng-template>
+      
+        
+      
+    </section>
+
+    <aside id="anadir">
+        <div id="anadirContainer">
+            <div id="anadir-encabezado">
+                <h3>Añade un libro</h3>
+           </div>
+   
+           <div id="anadirContent">
+               <form id="form">
+                   <div>
+                       <label class="label" for="titulo"></label>
+                       <input #titulo type="text" placeholder="Título" id="titulo" required>
+                   </div>
+   
+                   <div>
+                       <label class="label" for="autor"></label>
+                       <input #autor type="text" placeholder="Autor" id="autor" required>
+                   </div>
+   
+                   <div>
+                       <label class="label" for="precio"></label>
+                       <input #precio type="number" step="0.1" placeholder="Precio" id="precio" required>
+                   </div>
+   
+                   <div>
+                       <label  for="referencia"></label>
+                       <input #ref type="number" placeholder="Referencia" id="referencia" required>
+                   </div>
+
+                   <div>
+                        <label for="img"></label>
+                        <input #foto type="text" name="img" id="img" placeholder=" Portada del libro" required>
+                    </div>
+
+                    <button type="button" (click) = "anadirLibro(titulo.value,autor.value,+precio.value,+ref.value,foto.value)" class="botonLibro">Insertar libro</button>
+   
+               </form>
+           </div>
+        </div>
+        
+       
+
+    </aside>
+</main>
