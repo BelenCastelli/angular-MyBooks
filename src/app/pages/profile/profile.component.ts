@@ -53,7 +53,24 @@ export class ProfileComponent {
       this.isHidden2 = true
       this.color = "verde"
     }
-
+    // Simplificado
+    
+    // modificarDatos(newName: string, newLastaName: string, newEmail: string, newPhoto: string) {
+    //   this.user.name = newName || this.user.name;
+    //   this.user.last_name = newLastaName || this.user.last_name;
+    //   this.user.email = newEmail || this.user.email;
+    //   this.user.photo = newPhoto || this.user.photo;
+    
+    //   if (!newName && !newLastaName && !newEmail && !newPhoto) {
+    //     this.isHidden2 = false;
+    //     this.isHidden = true;
+    //     this.color = "rojo";
+    //   } else {
+    //     this.isHidden = false;
+    //     this.isHidden2 = true;
+    //     this.color = "verde";
+    //   }
+    // }
 
   }
 
