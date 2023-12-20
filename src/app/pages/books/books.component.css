@@ -197,18 +197,7 @@ input::placeholder{
     font-size: 24pt;
 }
 
-/* ngClass */
-  
-  .par {
-    color: rgba(220, 196, 145, 0.668)
-  }
-  
-  .impar {
-    color: rgb(125, 124, 123);
 
-  }
   
 
-#main{
-    border: solid black 3px; 
-}
+

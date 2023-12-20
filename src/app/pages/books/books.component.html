@@ -3,20 +3,12 @@
         <h2>Descubre mundos inexplorados, despierta tu imaginación y sumérgete en emocionantes historias.</h2>
         <h3>Encuentra tu próximo viaje literario hoy mismo</h3>
     </div>
+   
 
     <section id="content-libros">
         <div id="libros" *ngIf="books.length > 0; else noLibros">
-            
-            <div *ngFor="let book of books; let odd = odd" class="card">
-                <h3>{{book.title}}</h3>
-                <div>
-                    <img class="portada" src="{{book.photo}}" alt="Portada libro">
-                </div>
-            
-                <h4 class="autor">{{book.author}}</h4>
-                <p class="precio"> Precio: {{book.price}}&euro;</p>
-                <p class="ref">{{book.id_book | ref}} </p>
-                <button type="button" class="botonComprar" [ngClass]="{'par': !odd, 'impar': odd}">Comprar</button>
+            <div *ngFor="let book of books; let odd = odd; let index = index">
+                <app-card [libroPadre] = "book" [odd] = "odd" [indice] = "index" (eventoElimina) = "eliminaLibro($event)"></app-card>
             </div>
         </div>
         <ng-template #noLibros>
@@ -24,9 +16,6 @@
             No existen libros
             </div>
         </ng-template>
-      
-        
-      
     </section>
 
     <aside id="anadir">
