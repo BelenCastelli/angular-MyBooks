@@ -25,13 +25,13 @@ export class BooksComponent {
   eliminaLibro(indice:number){
     this.books.splice(indice, 1);
   }
-  anadirLibro(titulo:string, autor:string, precio:number,ref:number, foto: string):Book[]{
-    if (titulo && autor && precio && ref && foto){
-    let book = new Book(titulo, autor, precio, foto, ref)
-    this.books.push(book)
-    console.log(this.books);
-    }
+  // anadirLibro(titulo:string, autor:string, precio:number,ref:number, foto: string):Book[]{
+  //   if (titulo && autor && precio && ref && foto){
+  //   let book = new Book(titulo, autor, precio, foto, ref)
+  //   this.books.push(book)
+  //   console.log(this.books);
+  //   }
     
-    return this.books
-  }
+  //   return this.books
+  // }
 }

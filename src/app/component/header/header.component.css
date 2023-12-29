@@ -3,6 +3,8 @@
     height: 120px;
 
     display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
 
     background-image:var(--backgroundHeader);
     color: var(--colorText);
@@ -11,18 +13,18 @@
 }
 
 #logo{
-width:65%;
+width:40%;
 
 display: flex;
 align-items: center;
-justify-content: center;
+justify-content: flex-end;
 
 font-size: 36pt;
 font-weight: bold;
 }
 
 #menu{
-    width: 35%;
+    width: 60%;
     height: 100%;
 }
 
@@ -35,18 +37,22 @@ font-weight: bold;
 
 #lista{
     width: 100%;
+    padding: 30px;
 
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: flex-end;
+    flex-wrap: wrap;
 
-    font-size: 20pt;
+    font-size: 18pt;
     list-style: none;
 }
 
 .paginas{
     text-decoration: none;
     color: inherit;
+    padding: 5px;
+    margin-right: 40px;
 }
 
 .paginas:hover{
