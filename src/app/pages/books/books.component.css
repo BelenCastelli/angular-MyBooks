@@ -2,15 +2,13 @@ main{
     width: 100vw;
     min-height: calc(100vh - 60px);
 
-    display: grid;
-    grid-template-columns: [x0] 1fr [x1];
-    grid-template-rows: [y0] 200px [y1] 9fr [y2]
+    display: flex;
+    flex-direction: column;
 
 }
 
 #encabezado{
-    grid-column: x0/x2;
-    grid-row: y0/y1;
+
 
 
     display: flex;
@@ -33,13 +31,33 @@ h2:hover, h3:hover{
     transition: 2s;
 }
 
+.buscador{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+input::placeholder{
+    text-align: center;
+}
+
+
+input{
+    padding: 10px;   
+    width: 250px;
+    background-color: var(--background);
+    border: none;
+    color: var(--colorText2);
+    font-size: 12pt;
+    text-align: center;
+}
+
 #content-libros{
     display: flex;
     justify-content: center;
 }
-#libros{
-    grid-column: x0/x1;
-    grid-row: y1/y2;
+.libros{
+
     padding-top: 30px;
     padding-left: 20px;
     padding-right: 20px;
