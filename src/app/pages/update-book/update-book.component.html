@@ -31,8 +31,8 @@
                     <input #foto type="text" name="img" id="img" placeholder=" Portada del libro" required>
                 </div>
 
-                <button type="button" class="botonLibro">
-                 <!-- (click) = "anadirLibro(titulo.value,autor.value,+precio.value,+ref.value,foto.value)"> -->
+                <button type="button" class="botonLibro"
+                 (click) = "modificarLibro(titulo.value,autor.value,+precio.value,+ref.value,foto.value)">
                  Modificar libro </button>
 
            </form>

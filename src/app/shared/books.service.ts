@@ -51,12 +51,25 @@ export class BooksService {
   }
 
   public edit(book: Book): boolean{
-    let result = true
+    let result = false;
+    
+    for(let i = 0; i<this.books.length; i++){
+      if(this.books[i].id_book == book.id_book){
+        this.books.splice(i,1,book)
+        result = true;
+        break;
+      } else {
+        console.log("No se ha encontrado el libro con esa referencia");
+        }
+    }
+
     return result
+
   }
 
   public delete(id_book:number): boolean{
     let result: boolean = false; 
+    
 
     // for(let i = 0; i<this.books.length; i++){
     //   if(this.books[i].id_book == id_book){

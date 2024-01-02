@@ -23,8 +23,8 @@ main{
     align-items: center;
     justify-content: center;
 
-    background-color: var(--background);
-    border-left: dashed var(--colorText2);
+    background-color: rgba(245, 245, 220, 0.466); 
+    border-top: dashed var(--colorText2);
 
     
 }
