@@ -18,8 +18,7 @@ export class UpdateBookComponent {
     book = new Book(titulo, autor, precio, foto, ref)
     this.booksService.edit(book)
     console.log(book);
-    } else {console.log("No se ha encontrado el libro con esa referencia");
-    }
+    } 
     return this.booksService.getAll()
   }
 }
