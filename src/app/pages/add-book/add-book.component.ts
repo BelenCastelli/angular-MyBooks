@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BooksService } from 'src/app/shared/books.service';
 import { Book } from 'src/app/models/book';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-book',
@@ -8,7 +9,7 @@ import { Book } from 'src/app/models/book';
   styleUrls: ['./add-book.component.css']
 })
 export class AddBookComponent {
-  constructor(public booksService:BooksService){
+  constructor(public booksService:BooksService,public router: Router){
 
   }
 
@@ -17,7 +18,10 @@ export class AddBookComponent {
     let book = new Book(titulo, autor, precio, foto, ref)
     this.booksService.add(book)
     console.log(this.booksService.getAll());
+    this.router.navigate(['/books'])
     }
+
+   
     return this.booksService.getAll()
   }
 
