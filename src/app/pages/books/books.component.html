@@ -10,6 +10,7 @@
         <button  class="btn btn-outline-dark" (click)="buscar(idLibro.value)">
             <i class="fas fa-search"></i> 
         </button>
+        <div [hidden]="filtro" id="filtro">No se ha encontrado la referencia</div>
     </div>
 
     <section id="content-libros">
@@ -20,7 +21,8 @@
         </div>
         <ng-template #filtrar>
             <div class="libros">
-                <app-card [libroPadre] = "buscarLibro" [odd] = "odd" [indice] = "index" ></app-card>
+                <app-card [libroPadre] = "buscarLibro" [odd] = "odd" [indice] = "index" >
+                </app-card>     
             </div>
         </ng-template>
     </section>

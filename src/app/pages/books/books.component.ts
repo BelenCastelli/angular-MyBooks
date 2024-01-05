@@ -8,7 +8,7 @@ import { BooksService } from 'src/app/shared/books.service';
   styleUrls: ['./books.component.css']
 })
 export class BooksComponent {
-  
+  filtro:boolean
   buscarLibro: Book | undefined
 
   constructor(public booksService:BooksService){
@@ -16,13 +16,20 @@ export class BooksComponent {
     // this.booksService.add(new Book("Un mundo feliz", "Aldous Huxley", 10.40, "https://imagessl7.casadellibro.com/a/l/s7/57/9788497594257.webp",101))
     // this.booksService.add(new Book ("Fahrenheit 451", "Ray Bradbury", 10.40, "https://imagessl8.casadellibro.com/a/l/s7/08/9788466345408.webp",102))
     // this.booksService.add(new Book ("Orgullo y prejuicio", "Jane Austen", 11.95, "https://imagessl2.casadellibro.com/a/l/s7/42/9788467045642.webp",103))
+  this.filtro = true 
   }
+
 
   buscar(idBook:number){
+    this.filtro = true
     this.buscarLibro = this.booksService.getOne(idBook)
-
-
+    
+    if(this.buscarLibro === undefined){
+      this.filtro = false
+    }
+  
   }
+
   eliminaLibro(id_book:number){
     console.log(id_book);
     this.booksService.delete(id_book)

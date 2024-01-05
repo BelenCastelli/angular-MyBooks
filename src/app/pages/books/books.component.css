@@ -131,7 +131,20 @@ input{
     font-size: 24pt;
 }
 
+/* hidden */
 
-  
+  #filtro{
+    color: var(--colorText2);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    border: solid red 2px;
+    background-color: var(--background);
+    padding-left: 10px;
+    padding-right: 10px;
+
+
+  }
 
 

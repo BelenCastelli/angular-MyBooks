@@ -35,7 +35,7 @@ export class BooksService {
     // con .find -> buscar primera coincidencia en el array del valor dado
     
     let libroFiltrado: Book;
-    libroFiltrado = this.books.find((libro) => libro.id_book == idBook);
+    libroFiltrado = this.books.find((libro) => libro.id_book == idBook); 
     return libroFiltrado;
   }
 
