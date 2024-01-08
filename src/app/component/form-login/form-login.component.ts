@@ -4,23 +4,28 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 
 @Component({
-  selector: 'app-form-register',
-  templateUrl: './form-register.component.html',
-  styleUrls: ['./form-register.component.css']
+  selector: 'app-form-login',
+  templateUrl: './form-login.component.html',
+  styleUrls: ['./form-login.component.css']
 })
-export class FormRegisterComponent {
+export class FormLoginComponent {
+
   public user: User
 
   constructor(private router: Router){
     this.user = new User()
   }
 
-  register(form:NgForm){
+  login(form:NgForm){
     console.log(form.value);
     console.log(this.user);
 
-    // this.router.navigate(['/login'])
-   
+    this.router.navigate(['/profile'])
+    // limpiar el formulario "a mano". con .reset() desde angular
+
+    // this.user.email =''
+    // this.user.password =''
+    
     
   }
 }

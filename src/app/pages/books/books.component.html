@@ -14,7 +14,7 @@
     </div>
 
     <section id="content-libros">
-        <div class="libros" *ngIf="buscarLibro === undefined; else filtrar">
+        <div class="libros" *ngIf="buscarLibro === undefined else filtrar">
             <div *ngFor="let book of booksService.getAll(); let odd = odd; let index = index">
                 <app-card [libroPadre] = "book" [odd] = "odd" [indice] = "index" [idLibro] = "book.id_book" (eventoElimina) = "eliminaLibro($event)"></app-card>
             </div>

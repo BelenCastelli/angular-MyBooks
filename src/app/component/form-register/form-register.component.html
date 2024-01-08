@@ -1,36 +1,66 @@
-<section id="contenedor">
+<main id="contenedor">
     <div id="registro">
         <div id="title">
             <h2>Regístrate</h2>
         </div>
 
-        <form id="form">
+        <form #registerForm="ngForm" (ngSubmit)="register(registerForm); registerForm.reset()" id="form">
             <div class="datos">
                 <label for="nombre"></label>
-                <input type="text" id="nombre" name="nombre" placeholder="Nombre">
+                <input type="text" id="nombre" name="nombre" 
+                [(ngModel)]="user.name" #nameId = ngModel
+                [ngClass]="{'is-invalid': (nameId.dirty || nameId.touched) && nameId.invalid}" 
+                required
+                placeholder="Nombre">
+                <div *ngIf="(nameId.dirty || nameId.touched) && nameId.invalid" 
+                class="invalid-feedback fs-6 fw-bold">
+                    <p *ngIf="nameId.errors.required">El nombre es obligatorio</p>
+                </div>
             </div>
 
             <div class="datos">
                 <label for="apellido"></label>
-                <input type="text" id="apellido" name="apellido" placeholder="Apellido">
+                <input type="text" id="apellido" name="apellido" 
+                [(ngModel)]="user.last_name" #apellidoId = ngModel
+                [ngClass]="{'is-invalid': (apellidoId.dirty || apellidoId.touched) && apellidoId.invalid}" 
+                required
+                placeholder="Apellido">
+                <div *ngIf="(apellidoId.dirty || apellidoId.touched) && apellidoId.invalid" 
+                class="invalid-feedback fs-6 fw-bold">
+                    <p *ngIf="apellidoId.errors.required">El apellido es obligatorio</p>
+                </div>
             </div>
 
             <div class="datos">
                 <label for="email"></label>
-                <input type="email" id="email" name="email" placeholder="Correo Electrónico">
+                <input type="email" id="email" name="email" [(ngModel)]="user.email" #emailId ='ngModel' #spy 
+                placeholder="Correo Electrónico" 
+                [ngClass]="{'is-invalid': (emailId.dirty || emailId.touched) && emailId.invalid}" email required>
+                <div *ngIf="(emailId.dirty || emailId.touched) && emailId.invalid" class="invalid-feedback fs-6 fw-bold">
+                    <div *ngIf="emailId.errors.required">La direccion de email es obligatoria</div>
+                    <div *ngIf="emailId.errors.email">Direccion de email no valida</div>
+                </div>
             </div>
 
             <div class="datos">
                 <label for="contraseña"></label>
-                <input type="password" id="contraseña" name="contraseña" placeholder="contraseña">
+                <input type="password" id="contraseña" name="contraseña" [(ngModel)]="user.password" #passwordId ='ngModel' placeholder="contraseña" 
+                [ngClass]="{'is-invalid': (passwordId.dirty || passwordId.touched) && passwordId.invalid}" minlength="8" maxlength="12" required>
+                <div *ngIf="(passwordId.dirty || passwordId.touched) && passwordId.invalid" class="invalid-feedback fs-6 fw-bold">
+                    <div *ngIf="passwordId.errors.required">La contraseña es obligatoria</div>
+                    <div *ngIf="passwordId.errors.minlength">La contraseña no es valida</div>
+                    
+                </div>
             </div>
 
             <div class="datos">
-                <button type="button">Registrarse</button>
+                <button>Registrarse</button>
+            </div>
+
+            <div [hidden]="!registerForm.submitted">
+                <div class="text-light text-bg-success fs-6 fw-bold mt-3 p-1">Usuario registrado correctamente</div>
             </div>
         </form>
     </div>
-    
-
-</section>
+</main>
 

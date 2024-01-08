@@ -23,6 +23,10 @@ export class CardComponent {
     eliminarLibro() {
       // console.log(this.indice);
       this.eventoElimina.emit(this.idLibro)
+      console.log(this.idLibro)
+    
+      
+      
       // this.eventoElimina.emit(this.indice)
   
     }

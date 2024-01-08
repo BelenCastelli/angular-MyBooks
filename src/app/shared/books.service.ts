@@ -30,14 +30,24 @@ export class BooksService {
     return this.books
   }
 
-  public getOne(idBook:number): Book | undefined{
+  public getOne(idBook:number): Book | null{
 
     // con .find -> buscar primera coincidencia en el array del valor dado
     
     let libroFiltrado: Book;
+    let result: Book | undefined
     libroFiltrado = this.books.find((libro) => libro.id_book == idBook); 
-    return libroFiltrado;
+      if (libroFiltrado) {
+        console.log(libroFiltrado);
+        result = libroFiltrado;
+    } else {
+        console.log(`No se encontró un libro con el ID ${idBook}`);
+        result = undefined; // Puedes devolver un valor predeterminado o null en lugar de undefined
+    }
+
+    return result
   }
+  
 
   // Con bucle for: 
 

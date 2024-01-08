@@ -25,7 +25,12 @@ export class ProfileComponent {
     // this.correo = "belencastelli@gmail.com"
     // this.foto = "../../../assets/img-profile/avatar2.png"
 
-    this.user = new User("Belén", "Castelli Gubiotti", "belencastelli@gmail.com", "../../../assets/img-profile/avatar2.png")
+    this.user = new User
+    // ("Belén", "Castelli Gubiotti", "belencastelli@gmail.com", "../../../assets/img-profile/avatar2.png")
+    this.user.name = "Belen"
+    this.user.last_name = "Castelli Gubiotti"
+    this.user.email = "belencastelli@gmail.com"
+    this.user.photo ="../../../assets/img-profile/avatar2.png"
     this.isHidden = true;
     this.isHidden2 = true
     this.color;
