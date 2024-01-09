@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/user';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-form-login2',
@@ -11,10 +11,14 @@ import { User } from 'src/app/models/user';
 export class FormLogin2Component {
   public loginForm: FormGroup
 
-  constructor(private formBuilder: FormBuilder,
-    private router: Router){
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private toastr: ToastrService)
+    {
     this.buildForm()
 }
+
 
 private buildForm(){
 
@@ -30,9 +34,26 @@ private buildForm(){
 
 
 public login(){
-const user = this.loginForm.value
-this.loginForm.reset();
-console.log(user);
+  
+  if(!this.loginForm.invalid){
+    const user = this.loginForm.value
+    this.loginForm.reset();
+    this.toastr.success('Ha iniciado sesión correctamente', 
+                        'Exito', 
+                        {timeOut: 2000,
+                        closeButton: true,}
+    );
+    console.log(user);
+    this.router.navigate(['/books'])
+  } else  {
+    this.toastr.error('No se ha podido iniciar sesión', 
+                      'Fallo',
+                      {timeOut: 2000,
+                        closeButton: true,}
+    );
+  }
 }
+
+
 }
 

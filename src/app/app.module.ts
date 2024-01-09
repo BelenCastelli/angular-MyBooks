@@ -19,6 +19,8 @@ import { FormLoginComponent } from './component/form-login/form-login.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormLogin2Component } from './component/form-login2/form-login2.component';
 import { FormRegister2Component } from './component/form-register2/form-register2.component';
+import { ToastrModule } from 'ngx-toastr';
+import  { BrowserAnimationsModule }  from  '@angular/platform-browser/animations' ;
 
 
 @NgModule({
@@ -44,7 +46,9 @@ import { FormRegister2Component } from './component/form-register2/form-register
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

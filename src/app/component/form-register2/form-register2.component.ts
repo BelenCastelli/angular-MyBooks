@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user';
 
 @Component({
@@ -12,7 +13,8 @@ export class FormRegister2Component {
  public registerForm: FormGroup
 
   constructor(private formBuilder: FormBuilder,
-              private router: Router){
+              private router: Router,
+              private toastr:ToastrService){
    this.buildForm()
   }
 
@@ -30,24 +32,37 @@ export class FormRegister2Component {
   }
 
   private check(control:AbstractControl){
-    let resultado = {
-      noMatch: true
-    }
+    let resultado = {noMatch: true}
 
     // console.log(control)
     // console.log(control.parent)
     // console.log(control.parent?.value);
     // console.log(control.value);
     
-  if(control.parent?.value.contraseña == control.value){
-    resultado = null
-  }
-  return resultado
+      if(control.parent?.value.contraseña == control.value){
+        resultado = null
+      }
 
+    return resultado
   }
+
   public register(){
-    const user = this.registerForm.value
-    this.registerForm.reset();
-    console.log(user);
+    if(!this.registerForm.invalid){
+      const user = this.registerForm.value
+      this.registerForm.reset();
+      this.toastr.success('Se ha registrado correctamente', 
+                          'Exito', 
+                          {timeOut: 2000,
+                          closeButton: true,}
+      );
+      console.log(user);
+      this.router.navigate(['/login'])
+    } else  {
+      this.toastr.error('No se ha podido registrar', 
+                        'Fallo',
+                        {timeOut: 2000,
+                          closeButton: true,}
+      );
+    }
   }
 }
