@@ -9,7 +9,9 @@
                 <label for="nombre"></label>
                 <input type="text" id="nombre" name="nombre" 
                 [(ngModel)]="user.name" #nameId = ngModel
-                [ngClass]="{'is-invalid': (nameId.dirty || nameId.touched) && nameId.invalid}" 
+                [ngClass]="{
+                    'is-invalid': (nameId.dirty || nameId.touched) && nameId.invalid,
+                    'valid': nameId.valid}" 
                 required
                 placeholder="Nombre">
                 <div *ngIf="(nameId.dirty || nameId.touched) && nameId.invalid" 
@@ -22,7 +24,9 @@
                 <label for="apellido"></label>
                 <input type="text" id="apellido" name="apellido" 
                 [(ngModel)]="user.last_name" #apellidoId = ngModel
-                [ngClass]="{'is-invalid': (apellidoId.dirty || apellidoId.touched) && apellidoId.invalid}" 
+                [ngClass]="{
+                    'is-invalid': (apellidoId.dirty || apellidoId.touched) && apellidoId.invalid,
+                    'valid': apellidoId.valid}" 
                 required
                 placeholder="Apellido">
                 <div *ngIf="(apellidoId.dirty || apellidoId.touched) && apellidoId.invalid" 
@@ -35,9 +39,11 @@
                 <label for="email"></label>
                 <input type="email" id="email" name="email" [(ngModel)]="user.email" #emailId ='ngModel' #spy 
                 placeholder="Correo Electrónico" 
-                [ngClass]="{'is-invalid': (emailId.dirty || emailId.touched) && emailId.invalid}" email required>
+                [ngClass]="{
+                    'is-invalid': (emailId.dirty || emailId.touched) && emailId.invalid,
+                    'valid': emailId.valid}" email required>
                 <div *ngIf="(emailId.dirty || emailId.touched) && emailId.invalid" class="invalid-feedback fs-6 fw-bold">
-                    <div *ngIf="emailId.errors.required">La direccion de email es obligatoria</div>
+                    <div *ngIf="emailId.errors.required">Direccion de email obligatoria</div>
                     <div *ngIf="emailId.errors.email">Direccion de email no valida</div>
                 </div>
             </div>
@@ -45,7 +51,9 @@
             <div class="datos">
                 <label for="contraseña"></label>
                 <input type="password" id="contraseña" name="contraseña" [(ngModel)]="user.password" #passwordId ='ngModel' placeholder="contraseña" 
-                [ngClass]="{'is-invalid': (passwordId.dirty || passwordId.touched) && passwordId.invalid}" minlength="8" maxlength="12" required>
+                [ngClass]="{
+                    'is-invalid': (passwordId.dirty || passwordId.touched) && passwordId.invalid,
+                    'valid': passwordId.valid}" minlength="8" maxlength="12" required>
                 <div *ngIf="(passwordId.dirty || passwordId.touched) && passwordId.invalid" class="invalid-feedback fs-6 fw-bold">
                     <div *ngIf="passwordId.errors.required">La contraseña es obligatoria</div>
                     <div *ngIf="passwordId.errors.minlength">La contraseña no es valida</div>
@@ -54,7 +62,7 @@
             </div>
 
             <div class="datos">
-                <button>Registrarse</button>
+                <button [disabled]="registerForm.invalid">Registrarse</button>
             </div>
 
             <div [hidden]="!registerForm.submitted">

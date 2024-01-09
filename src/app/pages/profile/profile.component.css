@@ -72,8 +72,24 @@
     font-size: 16pt;
     font-weight: bold;
 }
-
 input{
+    height: 40px;
+    width: 250px;
+    text-align: center;
+    
+    color: var(--colorText2);
+    font-weight: bold;
+    font-size: 12pt; 
+    background-color:  var(--background);
+    border: none;
+}
+input::placeholder{
+    font-size: 14pt;
+    text-align: center;
+    color: rgba(128, 128, 128, 0.667);
+
+}
+/* input{
     height: 30px;
     padding: 10px;   
 
@@ -86,7 +102,7 @@ input{
 
 input::placeholder{
     text-align: center    
-}
+} */
 
 form{
     display: flex;

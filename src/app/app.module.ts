@@ -16,7 +16,9 @@ import { AddBookComponent } from './pages/add-book/add-book.component';
 import { UpdateBookComponent } from './pages/update-book/update-book.component';
 import { LoginComponent } from './pages/login/login.component';
 import { FormLoginComponent } from './component/form-login/form-login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormLogin2Component } from './component/form-login2/form-login2.component';
+import { FormRegister2Component } from './component/form-register2/form-register2.component';
 
 
 @NgModule({
@@ -35,11 +37,14 @@ import { FormsModule } from '@angular/forms';
     UpdateBookComponent,
     LoginComponent,
     FormLoginComponent,
+    FormLogin2Component,
+    FormRegister2Component,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

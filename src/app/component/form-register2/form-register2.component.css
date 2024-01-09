@@ -27,7 +27,6 @@
     font-size: 20pt;
     color: var(--colorText2);
     margin-bottom: 20px;
-
 }
 
 #form{
@@ -38,9 +37,7 @@
     justify-content: space-around;
 }
 
-.datos{
-    margin-top: 10px;
-}
+
 
 input{
     height: 40px;

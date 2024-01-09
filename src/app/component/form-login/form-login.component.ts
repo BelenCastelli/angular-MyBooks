@@ -20,7 +20,7 @@ export class FormLoginComponent {
     console.log(form.value);
     console.log(this.user);
 
-    this.router.navigate(['/profile'])
+    this.router.navigate(['/books'])
     // limpiar el formulario "a mano". con .reset() desde angular
 
     // this.user.email =''

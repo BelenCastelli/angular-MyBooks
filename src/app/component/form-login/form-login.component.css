@@ -79,3 +79,9 @@ button:hover{
     color: var(--colorText2);
     font-weight: bold;
 }
+.is-invalid{
+    border: solid red 2px
+}
+.valid{
+    border: solid green 2px;
+}
