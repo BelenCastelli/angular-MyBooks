@@ -20,7 +20,7 @@ export class CardComponent {
 
   }
 
-    eliminarLibro() {
+    eliminarLibro(idLibro:number) {
       // console.log(this.indice);
       this.eventoElimina.emit(this.idLibro)
       console.log(this.idLibro)

@@ -33,6 +33,7 @@ export class BooksComponent {
   eliminaLibro(id_book:number){
     console.log(id_book);
     this.booksService.delete(id_book)
+    this.buscarLibro = undefined
     
   }
 

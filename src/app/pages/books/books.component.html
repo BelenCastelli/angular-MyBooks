@@ -21,7 +21,7 @@
         </div>
         <ng-template #filtrar>
             <div class="libros">
-                <app-card [libroPadre] = "buscarLibro" [odd] = "odd" [indice] = "index" >
+                <app-card [libroPadre] = "buscarLibro" [odd] = "odd" [indice] = "index" [idLibro] = "buscarLibro.id_book" (eventoElimina) = "eliminaLibro($event)">
                 </app-card>     
             </div>
         </ng-template>
