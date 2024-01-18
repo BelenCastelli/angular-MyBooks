@@ -9,9 +9,7 @@ import { Book } from 'src/app/models/book';
 })
 export class CardComponent {
 @Input() libroPadre: Book;
-@Input() buscarLibro: Book;
 @Input() odd:boolean; 
-// @Input() indice:number
 @Input() idLibro:number
 
 @Output() eventoElimina = new EventEmitter<number>();
@@ -24,11 +22,5 @@ export class CardComponent {
       // console.log(this.indice);
       this.eventoElimina.emit(this.idLibro)
       console.log(this.idLibro)
-    
-      
-      
-      // this.eventoElimina.emit(this.indice)
-  
     }
-
 }

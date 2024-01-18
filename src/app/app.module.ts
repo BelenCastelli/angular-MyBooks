@@ -21,6 +21,7 @@ import { FormLogin2Component } from './component/form-login2/form-login2.compone
 import { FormRegister2Component } from './component/form-register2/form-register2.component';
 import { ToastrModule } from 'ngx-toastr';
 import  { BrowserAnimationsModule }  from  '@angular/platform-browser/animations' ;
+import {HttpClientModule} from '@angular/common/http'
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import  { BrowserAnimationsModule }  from  '@angular/platform-browser/animations
     FormsModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

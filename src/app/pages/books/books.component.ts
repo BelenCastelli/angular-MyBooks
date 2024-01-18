@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Book } from 'src/app/models/book';
+import { Respuesta } from 'src/app/models/respuesta';
 import { BooksService } from 'src/app/shared/books.service';
 
 @Component({
@@ -7,48 +9,69 @@ import { BooksService } from 'src/app/shared/books.service';
   templateUrl: './books.component.html',
   styleUrls: ['./books.component.css']
 })
-export class BooksComponent {
-  filtro:boolean
-  buscarLibro: Book | undefined
+export class BooksComponent implements OnInit{
+  books:Book[] 
+  booksFilter: Book[] | undefined
+  buscarLibro:boolean = false
 
-  constructor(public booksService:BooksService){
-    // this.booksService.add( new Book ("1984", "George Orwell", 8.50, "https://imagessl4.casadellibro.com/a/l/s7/44/9788499890944.webp",100))
-    // this.booksService.add(new Book("Un mundo feliz", "Aldous Huxley", 10.40, "https://imagessl7.casadellibro.com/a/l/s7/57/9788497594257.webp",101))
-    // this.booksService.add(new Book ("Fahrenheit 451", "Ray Bradbury", 10.40, "https://imagessl8.casadellibro.com/a/l/s7/08/9788466345408.webp",102))
-    // this.booksService.add(new Book ("Orgullo y prejuicio", "Jane Austen", 11.95, "https://imagessl2.casadellibro.com/a/l/s7/42/9788467045642.webp",103))
-  this.filtro = true 
+  constructor(public booksService:BooksService,
+    private toastr:ToastrService){
   }
-
-
-  buscar(idBook:number){
-    this.filtro = true
-    this.buscarLibro = this.booksService.getOne(idBook)
-    
-    if(this.buscarLibro === undefined){
-      this.filtro = false
-    }
+  getAll(){
+    this.booksService.getAll().subscribe((res:Respuesta) =>{
+      if(!res.error){
+        this.books = res.data
+      } else {
+        this.toastr.error('No se han encontrado libros', 'Error', {positionClass: 'toast-center-center'})
+      }
+    })
+  }
+  ngOnInit(): void {
+    this.getAll()
+  }
   
+  buscar(id_book:number){
+  this.booksService.getOne(id_book).subscribe((res: Respuesta) => {
+    if(res.error == false){
+      this.books = res.data
+    } else {
+      this.toastr.error('No se ha encontrado el libro', 
+                        'Error', {positionClass: 'toast-center-center',
+                                 closeButton: true})
+      this.getAll()
+      }
+    })
   }
+
+  // * Creando otra variable para almacenar el libro filtrado
+  // buscar(id_book:number){
+
+  //   this.booksService.getOne(id_book).subscribe((res: Respuesta) => {
+  //     if(res.error == false){
+  //       this.booksFilter = res.data
+  //       console.log(this.booksFilter);
+        
+        
+  //     } else {
+  //       this.toastr.error('No se ha encontrado el libro', 
+  //                         'Error', {positionClass: 'toast-center-center',
+  //                                  closeButton: true})
+  //       this.getAll()
+  //       }
+  //     })
+
+  //   }
 
   eliminaLibro(id_book:number){
     console.log(id_book);
-    this.booksService.delete(id_book)
-    this.buscarLibro = undefined
-    
+    this.booksService.delete(id_book).subscribe((res:Respuesta) =>{
+    if(res.error == false){
+      this.books = res.data
+      this.toastr.success('Libro eliminado correctamente', 'Éxito', {positionClass: 'toast-center-center',
+                                                                      closeButton:true})
+    } else {
+      this.toastr.error(`${res.error} ${res.mensaje}`)
+    }
+    })
   }
-
-  // MEDIANTE COMUNICACION HIJO-PADRE
-  // eliminaLibro(indice:number){
-  //   this.books.splice(indice, 1);
-  // }
-
-  // anadirLibro(titulo:string, autor:string, precio:number,ref:number, foto: string):Book[]{
-  //   if (titulo && autor && precio && ref && foto){
-  //   let book = new Book(titulo, autor, precio, foto, ref)
-  //   this.books.push(book)
-  //   console.log(this.books);
-  //   }
-    
-  //   return this.books
-  // }
 }

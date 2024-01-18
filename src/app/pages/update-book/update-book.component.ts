@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { BooksService } from 'src/app/shared/books.service';
 import { Book } from 'src/app/models/book';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Respuesta } from 'src/app/models/respuesta';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-book',
@@ -10,18 +13,23 @@ import { Router } from '@angular/router';
 })
 export class UpdateBookComponent {
   constructor(public booksService: BooksService,
-              public router: Router){
+              public router: Router,
+              private toastr: ToastrService){
   }
 
-  modificarLibro(titulo:string, autor:string, precio:number,ref:number, foto: string):Book[]{
+  modificarLibro(titulo:string, autor:string, precio:number,ref:number, foto: string){
     let book: Book;
     if (titulo && autor && precio && ref && foto){
     book = new Book(titulo, autor, precio, foto, ref)
-    this.booksService.edit(book);
-
-    console.log(book);
+    this.booksService.edit(book).subscribe((res:Respuesta) => {
+      if(res.error == false){
+        this.toastr.success('Libro modificado correctamente', 'Éxito', {positionClass: 'toast-center-center',
+                                                                        closeButton:true})
     this.router.navigate(['/books'])
-    } 
-    return this.booksService.getAll()
-  }
-}
+      } else {
+        this.toastr.error(`${res.mensaje}`, 'Error', {positionClass: 'toast-center-center',
+                                                      closeButton:true})
+      }
+    })
+    }
+}}
