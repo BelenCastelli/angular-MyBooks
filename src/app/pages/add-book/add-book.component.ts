@@ -21,6 +21,7 @@ export class AddBookComponent {
     anadirLibro(titulo:string, autor:string, precio:number,ref:number, foto: string){
       if (titulo && autor && precio && ref && foto){
       let book = new Book(titulo, autor, precio, foto, ref)
+
       this.booksService.add(book).subscribe((res:Respuesta) =>{
         if(res.error == false){
           this.toastr.success('Libro añadido correctamente', 'Éxito', {positionClass: 'toast-center-center',
@@ -31,6 +32,10 @@ export class AddBookComponent {
                                                         closeButton:true})
         }
       })
+    } else {
+      this.toastr.error('Todos los campos son obligatorios', 'Error', 
+                        {positionClass: 'toast-center-center',
+                        closeButton:true})
     }
   }
 }

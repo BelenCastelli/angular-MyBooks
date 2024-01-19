@@ -16,18 +16,18 @@
     </div>
 
     <section id="content-libros">
-        <div class="libros">
-         <!-- *ngIf="booksFilter == undefined else filtrar"> -->
+        <div class="libros"
+         *ngIf="booksFilter == undefined else filtrar">
             <div *ngFor="let book of books; let odd = odd; let index = index">
                 <app-card [libroPadre] = "book" [odd] = "odd" [indice] = "index" [idLibro] = "book.id_book" (eventoElimina) = "eliminaLibro($event)"></app-card>
             </div>
         </div>
-        <!-- <ng-template #filtrar>
+        <ng-template #filtrar>
             <div class="libros">
-                <app-card [libroPadre] = "booksFilter" [odd] = "odd" [indice] = "index" [idLibro] = "booksFilter[0].id_book" (eventoElimina) = "eliminaLibro($event)">
+                <app-card [libroPadre] = "booksFilter[0]" [odd] = "odd" [indice] = "index" [idLibro] = "booksFilter[0].id_book" (eventoElimina) = "eliminaLibro($event)">
                 </app-card>     
             </div>
-        </ng-template> -->
+        </ng-template>
     </section>
 
 

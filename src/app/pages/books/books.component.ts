@@ -15,14 +15,19 @@ export class BooksComponent implements OnInit{
   buscarLibro:boolean = false
 
   constructor(public booksService:BooksService,
-    private toastr:ToastrService){
-  }
+              private toastr:ToastrService){}
+
   getAll(){
+    this.booksFilter = undefined
     this.booksService.getAll().subscribe((res:Respuesta) =>{
       if(!res.error){
         this.books = res.data
+        console.log(res.data);
+        
       } else {
-        this.toastr.error('No se han encontrado libros', 'Error', {positionClass: 'toast-center-center'})
+        this.toastr.error('No se han encontrado libros', 'Error', 
+                          {positionClass: 'toast-center-center',
+                            closeButton: true})
       }
     })
   }
@@ -30,48 +35,51 @@ export class BooksComponent implements OnInit{
     this.getAll()
   }
   
+  // buscar(id_book:number){
+  // this.booksService.getOne(id_book).subscribe((res: Respuesta) => {
+  //   if(!res.error){
+  //     this.books = res.data
+  //   } else {
+  //     this.toastr.error('No se ha encontrado el libro', 
+  //                       'Error', {positionClass: 'toast-center-center',
+  //                                closeButton: true})
+  //     this.getAll()
+  //     }
+  //   })
+  // }
+
+  // * Creando otra variable para almacenar el libro filtrado
   buscar(id_book:number){
-  this.booksService.getOne(id_book).subscribe((res: Respuesta) => {
-    if(res.error == false){
-      this.books = res.data
-    } else {
-      this.toastr.error('No se ha encontrado el libro', 
-                        'Error', {positionClass: 'toast-center-center',
-                                 closeButton: true})
-      this.getAll()
+
+    this.booksService.getOne(id_book).subscribe((res: Respuesta) => {
+
+      if(res.error == false){
+        this.booksFilter = res.data
+        console.log(this.booksFilter);
+      } else {
+        this.toastr.error('No se ha encontrado el libro', 
+                          'Error', {positionClass: 'toast-center-center',
+                                   closeButton: true})
+        this.getAll()
       }
     })
   }
 
-  // * Creando otra variable para almacenar el libro filtrado
-  // buscar(id_book:number){
-
-  //   this.booksService.getOne(id_book).subscribe((res: Respuesta) => {
-  //     if(res.error == false){
-  //       this.booksFilter = res.data
-  //       console.log(this.booksFilter);
-        
-        
-  //     } else {
-  //       this.toastr.error('No se ha encontrado el libro', 
-  //                         'Error', {positionClass: 'toast-center-center',
-  //                                  closeButton: true})
-  //       this.getAll()
-  //       }
-  //     })
-
-  //   }
-
   eliminaLibro(id_book:number){
     console.log(id_book);
     this.booksService.delete(id_book).subscribe((res:Respuesta) =>{
-    if(res.error == false){
-      this.books = res.data
-      this.toastr.success('Libro eliminado correctamente', 'Éxito', {positionClass: 'toast-center-center',
-                                                                      closeButton:true})
-    } else {
-      this.toastr.error(`${res.error} ${res.mensaje}`)
-    }
+      if(!res.error){
+        this.booksFilter = undefined
+        this.books = res.data
+        this.toastr.success('Libro eliminado correctamente',
+                             'Éxito', {positionClass: 'toast-center-center',
+                                      closeButton:true})
+      } else {
+        this.toastr.error(`${res.mensaje}`, 'Error',
+                          {positionClass: 'toast-center-center',
+                          closeButton:true})
+      }
     })
   }
+  
 }

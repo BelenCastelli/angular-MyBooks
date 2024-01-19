@@ -18,18 +18,25 @@ export class UpdateBookComponent {
   }
 
   modificarLibro(titulo:string, autor:string, precio:number,ref:number, foto: string){
+
     let book: Book;
+
     if (titulo && autor && precio && ref && foto){
-    book = new Book(titulo, autor, precio, foto, ref)
-    this.booksService.edit(book).subscribe((res:Respuesta) => {
-      if(res.error == false){
-        this.toastr.success('Libro modificado correctamente', 'Éxito', {positionClass: 'toast-center-center',
-                                                                        closeButton:true})
-    this.router.navigate(['/books'])
-      } else {
-        this.toastr.error(`${res.mensaje}`, 'Error', {positionClass: 'toast-center-center',
-                                                      closeButton:true})
-      }
-    })
+
+      book = new Book(titulo, autor, precio, foto, ref)
+      this.booksService.edit(book).subscribe((res:Respuesta) => {
+        if(res.error == false){
+          this.toastr.success('Libro modificado correctamente', 'Éxito', {positionClass: 'toast-center-center',
+                                                                          closeButton:true})
+          this.router.navigate(['/books'])
+        } else {
+          this.toastr.error(`${res.mensaje}`, 'Error', {positionClass: 'toast-center-center',
+                                                        closeButton:true})
+        }
+      })
+    } else {
+      this.toastr.error('Todos los campos son obligatorios', 'Error', 
+                        {positionClass: 'toast-center-center',
+                        closeButton:true})
     }
 }}
